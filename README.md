@@ -1,5 +1,5 @@
 # README
-A simple repository that runs Ansible tasks specific to setting up a simple Docker host.
+A repository that runs Ansible tasks to setup a Docker host.
 
 ## Entrypoint
 ```
