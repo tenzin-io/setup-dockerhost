@@ -5,9 +5,6 @@
   connection: local
   gather_facts: yes
 
-  vars_files:
-    - vars.yml
-
   tasks:
     - name: Run Ubuntu specific tasks
       include_tasks: ubuntu.yml
@@ -20,3 +17,9 @@
     - name: Run CentOS specific tasks
       include_tasks: centos.yml
       when: ansible_facts["distribution"] == "CentOS"
+
+  handlers:
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
