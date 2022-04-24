@@ -1,0 +1,22 @@
+#!/usr/bin/ansible-playbook
+---
+- name: Setup Docker host
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Run Ubuntu specific tasks
+      include_tasks: ubuntu.yml
+      when: ansible_facts["distribution"] == "Ubuntu"
+
+    - name: Run Debian specific tasks
+      include_tasks: debian.yml
+      when: ansible_facts["distribution"] == "Debian"
+
+    - name: Run CentOS specific tasks
+      include_tasks: centos.yml
+      when: ansible_facts["distribution"] == "CentOS"

@@ -1,0 +1,21 @@
+---
+- name: Install docker.io package
+  package:
+    name: docker.io
+    state: present
+
+- name: Install docker-compose package
+  package:
+    name: docker-compose
+    state: present
+
+- name: Update the daemon.json
+  copy:
+    src: files/daemon.json
+    dest: /etc/docker/daemon.json
+
+- name: Enable and start docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
