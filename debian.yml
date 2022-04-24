@@ -13,6 +13,7 @@
   copy:
     src: files/daemon.json
     dest: /etc/docker/daemon.json
+  notify: restart docker
 
 - name: Enable and start docker
   service:
